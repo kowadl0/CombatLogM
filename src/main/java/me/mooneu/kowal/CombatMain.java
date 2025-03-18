@@ -1,5 +1,6 @@
 package me.mooneu.kowal;
 
+import me.mooneu.kowal.command.CombatLogMCommand;
 import me.mooneu.kowal.data.Combat.CombatManager;
 import me.mooneu.kowal.data.Combat.impl.CombatManagerImpl;
 import me.mooneu.kowal.data.RegisterData;
@@ -43,6 +44,9 @@ public final class CombatMain extends JavaPlugin {
         saveDefaultConfig();
 
         DeathUtil.loadConfigValues(getConfig());
+
+        this.getCommand("combatlogm").setExecutor(new CombatLogMCommand(this));
+        getLogger().info("Loaded command: combatlogm");
 
         registerManagers();
 

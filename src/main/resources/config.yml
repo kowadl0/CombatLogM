@@ -25,6 +25,8 @@ combat:
     broadcast: "&cPlayer {killer} killed {victim} with hp {hp}"
     nokiller: "{victim} has fallen down"
     killcooldown: "&4You have already killed this player recently! Stats will not be updated."
+    no-permission: "&cYou do not have permission to reload the config."
+    reload-success: "&aConfig reloaded successfully!"
     title:
       text: "&cKILL!"
       subtitletext: "&cYou killed {oponnent}"
