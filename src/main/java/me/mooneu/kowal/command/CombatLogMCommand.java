@@ -44,13 +44,14 @@ public class CombatLogMCommand implements CommandExecutor {
 
         plugin.reloadConfig();
 
+        config = plugin.getConfig();
         combatTimer = TimeUtil.SECOND.getTime(config.getInt("combat.timer", 31));
         allowedCmdMessage = config.getString("combat.allowed-cmds.message", "This command has been blocked in combat");
         allowedCommands = config.getStringList("combat.allowed-cmds.allow");
         blockedInteractions = config.getStringList("combat.interaction.type-block");
         interactionBlockedMessage = config.getString("combat.interaction.message", "&cThis interaction has been blocked in combat!");
-        killCooldown = plugin.getConfig().getLong("combat.killcooldown", 3600000L);
-        killCooldownMessage = HelpUtil.hexColor(plugin.getConfig().getString("combat.messages.killcooldown", "&4You have already killed this player recently! Stats will not be updated."));
+        killCooldown = config.getLong("combat.killcooldown", 3600000L);
+        killCooldownMessage = HelpUtil.hexColor(config.getString("combat.messages.killcooldown", "&4You have already killed this player recently! Stats will not be updated."));
         combatMessageBar = HelpUtil.hexColor(config.getString("combat.message-bar", "&cYou are in combat! Time left %time%"));
         broadcastMessage = config.getString("combat.messages.broadcast", "&cPlayer {killer} killed {victim} with hp {hp}");
         titleText = config.getString("combat.messages.title.text", "&cKILL!");
@@ -63,4 +64,5 @@ public class CombatLogMCommand implements CommandExecutor {
         sender.sendMessage(HelpUtil.fixColor("&cCombatLogM - Combat System ver. " + pluginVersion));
         return true;
     }
+
 }

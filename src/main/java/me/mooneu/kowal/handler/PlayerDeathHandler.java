@@ -46,7 +46,8 @@ public class PlayerDeathHandler implements Listener {
 
         if (killer != null) {
             Combat killerFight = plugin.getCombatManager().getFight(killer);
-            if (!killerFight.hasFight()) return;
+
+            if (killerFight == null || !killerFight.hasFight()) return;
 
             if (victim.equals(killer)) return;
 
