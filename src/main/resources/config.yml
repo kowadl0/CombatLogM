@@ -1,0 +1,32 @@
+combat:
+  ## COMBAT TIME
+  timer: 31
+  ## TYPES; BOSSBAR, ACTIONBAR
+  type: "BOSSBAR"
+  message-bar: "&cYou are in combat! Time left %time%"
+  allowed-cmds:
+    message: "This command has been blocked in combat"
+    allow:
+      - vanish
+      - msg
+      - r
+      - reply
+      - ban
+  interaction:
+    ## TRUE/FALSE interaction of blocks
+    active: true
+    type-block:
+      - CRAFTING_TABLE
+      - ENDER_CHEST
+      - CHEST
+      - TRAPPED_CHEST
+    message: "&cThis interaction has been blocked in combat!"
+  messages:
+    broadcast: "&cPlayer {killer} killed {victim} with hp {hp}"
+    nokiller: "{victim} has fallen down"
+    killcooldown: "&4You have already killed this player recently! Stats will not be updated."
+    title:
+      text: "&cKILL!"
+      subtitletext: "&cYou killed {oponnent}"
+  ## Kill cooldown in milliseconds (default: 1 hour)
+  killcooldown: 3600000

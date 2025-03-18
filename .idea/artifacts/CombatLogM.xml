@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CombatLogM">
+    <output-path>$PROJECT_DIR$/out/artifacts/CombatLogM</output-path>
+    <root id="archive" name="CombatLogM.jar">
+      <element id="module-output" name="CombatLogM" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+    </root>
+  </artifact>
+</component>
