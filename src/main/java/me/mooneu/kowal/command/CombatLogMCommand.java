@@ -44,7 +44,7 @@ public class CombatLogMCommand implements CommandExecutor {
 
         plugin.reloadConfig();
 
-        config = plugin.getConfig();
+        config = CombatMain.getPlugin().getConfig();
         combatTimer = TimeUtil.SECOND.getTime(config.getInt("combat.timer", 31));
         allowedCmdMessage = config.getString("combat.allowed-cmds.message", "This command has been blocked in combat");
         allowedCommands = config.getStringList("combat.allowed-cmds.allow");
@@ -64,5 +64,4 @@ public class CombatLogMCommand implements CommandExecutor {
         sender.sendMessage(HelpUtil.fixColor("&cCombatLogM - Combat System ver. " + pluginVersion));
         return true;
     }
-
 }
