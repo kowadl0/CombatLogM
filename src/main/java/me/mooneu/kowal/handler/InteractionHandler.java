@@ -32,7 +32,7 @@ public class InteractionHandler implements Listener {
         Player player = event.getPlayer();
         Combat combat = plugin.getCombatManager().getFight(player);
 
-        if (combat.hasFight()) {
+        if (combat.hasFight() && !player.hasPermission("combatlogm.admin")) {
             if (event.getClickedBlock() != null) {
                 Material blockType = event.getClickedBlock().getType();
 

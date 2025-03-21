@@ -32,3 +32,9 @@ combat:
       subtitletext: "&cYou killed {oponnent}"
   ## Kill cooldown in milliseconds (default: 1 hour)
   killcooldown: 3600000
+line:
+  enabled: true
+  regions:
+    - pvp
+    - pvp2
+  message-line: "&cYou cant join this region in combat"
