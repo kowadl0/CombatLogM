@@ -55,7 +55,6 @@ public class CombatLineHandler implements Listener {
             if (region.contains(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ())) {
                 player.sendMessage(regionsmessage.replace("&", "§"));
                 knockBackPlayer(player);
-                event.setCancelled(true);
                 return;
             }
         }
