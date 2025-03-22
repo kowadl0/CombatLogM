@@ -24,6 +24,8 @@ public class CombatLogMCommand implements CommandExecutor {
     private String broadcastMessage;
     private String titleText;
     private String titleSubtitle;
+    private List<String> regions;
+    private String regionsmessage;
 
     public CombatLogMCommand(CombatMain plugin) {
         this.plugin = plugin;
@@ -56,6 +58,8 @@ public class CombatLogMCommand implements CommandExecutor {
         broadcastMessage = config.getString("combat.messages.broadcast", "&cPlayer {killer} killed {victim} with hp {hp}");
         titleText = config.getString("combat.messages.title.text", "&cKILL!");
         titleSubtitle = config.getString("combat.messages.title.subtitletext", "&cYou killed a {opponent}");
+        regions = config.getStringList("line.regions");
+        regionsmessage = config.getString("line.message-line", "&cYou can't join this region in combat");
 
         String reloadSuccessMessage = config.getString("combat.messages.reload-success", "&aConfig reloaded successfully!");
         sender.sendMessage(HelpUtil.fixColor(reloadSuccessMessage));

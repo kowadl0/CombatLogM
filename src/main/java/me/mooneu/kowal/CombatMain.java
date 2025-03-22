@@ -78,16 +78,16 @@ public final class CombatMain extends JavaPlugin {
             getLogger().info("message-bar = ACTIONBAR");
         }
 
-        wgPlugin = (WorldGuardPlugin) Bukkit.getPluginManager().getPlugin("WorldGuard");
-
-        if (wgPlugin == null) {
-            getLogger().severe("WorldGuard not found!");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
         boolean worldguardActive = getConfig().getBoolean("line.enabled", true);
 
         if (worldguardActive) {
+            wgPlugin = (WorldGuardPlugin) Bukkit.getPluginManager().getPlugin("WorldGuard");
+
+            if (wgPlugin == null) {
+                getLogger().severe("WorldGuard not found!");
+                getServer().getPluginManager().disablePlugin(this);
+                return;
+            }
             new CombatLineHandler(this);
             getLogger().info("WorldGuardHook enabled");
         } else {

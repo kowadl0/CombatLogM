@@ -1,6 +1,7 @@
 package me.mooneu.kowal.handler;
 
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
@@ -38,30 +39,36 @@ public class CombatLineHandler implements Listener {
         if (player.hasPermission("combatlogm.admin")) {
             return;
         }
-
         Combat combat = plugin.getCombatManager().getFight(player);
         if (combat == null || !combat.hasFight()) {
             return;
         }
-
         Location loc = player.getLocation();
         RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
         RegionManager regionManager = container.get(BukkitAdapter.adapt(player.getWorld()));
         if (regionManager == null) return;
-
         for (String regionName : regions) {
             ProtectedRegion region = regionManager.getRegion(regionName);
             if (region == null) continue;
             if (region.contains(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ())) {
                 player.sendMessage(regionsmessage.replace("&", "§"));
-                knockBackPlayer(player);
+                knockBackPlayer(player, region);
                 return;
             }
         }
     }
-    private void knockBackPlayer(Player player) {
-        Location loc = player.getLocation();
-        Vector knockback = loc.getDirection().multiply(-1).setY(0.5);
+
+    private void knockBackPlayer(Player player, ProtectedRegion region) {
+        Location playerLoc = player.getLocation();
+        BlockVector3 min = region.getMinimumPoint();
+        BlockVector3 max = region.getMaximumPoint();
+        double centerX = (min.getX() + max.getX()) / 2.0;
+        double centerZ = (min.getZ() + max.getZ()) / 2.0;
+        Vector knockback = new Vector(
+                playerLoc.getX() - centerX,
+                0,
+                playerLoc.getZ() - centerZ
+        ).normalize().multiply(1.2).setY(0.4); // Zwiększony knockback i lekki podskok
         player.setVelocity(knockback);
     }
 }
